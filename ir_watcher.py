@@ -17,4 +17,6 @@ def get_ir_state(_ir_pin_no):
 
 
 ir_watcher = Watcher(state_func=get_ir_state, change_handlers=[
-                       on_ir_state_changed], initial_state=get_ir_state(IR_PIN_NO), state_check_interval=1, _ir_pin_no=IR_PIN_NO)
+    on_ir_state_changed], initial_state=get_ir_state(IR_PIN_NO), state_check_interval=1, _ir_pin_no=IR_PIN_NO)
+
+ir_watcher.start_watching()
