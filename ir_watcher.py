@@ -5,7 +5,7 @@ from configparser import ConfigParser
 config = ConfigParser()
 config.read('./config/config.ini')
 
-IR_PIN_NO = config['DEFAULT']['IR_PIN_NO']
+IR_PIN_NO = int(config['DEFAULT']['IR_PIN_NO'])
 
 IO.setwarnings(False)
 IO.setmode(IO.BCM)
