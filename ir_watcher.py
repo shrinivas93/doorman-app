@@ -1,7 +1,11 @@
 import RPi.GPIO as IO
 from events.watcher import Watcher
+from configparser import ConfigParser
 
-IR_PIN_NO = 11
+config = ConfigParser()
+config.read('./config/config.ini')
+
+IR_PIN_NO = config['IR_PIN_NO']
 
 IO.setwarnings(False)
 IO.setmode(IO.BCM)
