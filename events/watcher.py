@@ -1,6 +1,6 @@
 from threading import Thread
 from time import sleep
-from events.event import Event
+from event import Event
 
 
 class Watcher:
