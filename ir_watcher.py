@@ -3,7 +3,7 @@ import RPi.GPIO as IO
 from events.watcher import Watcher
 
 CONFIG = ConfigParser()
-CONFIG.read('./config/config.ini')
+CONFIG.read('config/config.ini')
 
 IR_PIN_NO = int(CONFIG['DEFAULT']['IR_PIN_NO'])
 
