@@ -86,8 +86,8 @@ def on_ir_state_changed(previous_state, current_state):
             print('Detection output stored at "{}"'.format(
                 detection_output_file_path))
 
-            interesting_objects = filter(
-                lambda x: x['name'] == 'person', detections)
+            interesting_objects = list(filter(
+                lambda x: x['name'] == 'person', detections))
             interesting_objects_count = len(interesting_objects)
 
             if interesting_objects_count > 0:
