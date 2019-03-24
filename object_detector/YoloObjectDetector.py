@@ -5,7 +5,7 @@ class YoloObjectDetector:
     def __init__(self, yolo_model_path):
         self.yolo_model_path = yolo_model_path
         self.object_detector = ObjectDetection()
-        self.object_detector.setModelTypeAsTinyYOLOv3()
+        self.object_detector.setModelTypeAsYOLOv3()
         self.object_detector.setModelPath(yolo_model_path)
         self.object_detector.loadModel()
 
