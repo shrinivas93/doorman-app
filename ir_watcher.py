@@ -5,7 +5,7 @@ import tensorflow as tf
 import RPi.GPIO as IO
 from events.watcher import Watcher
 from camera.camera import Camera
-from object_detector.YoloObjectDetector import YoloObjectDetector
+from object_detector.ObjectDetector import ObjectDetector
 from mail.mailer import Mailer
 
 CONFIG = ConfigParser()
@@ -19,6 +19,7 @@ CAMERA_INDEX = int(CONFIG['CAMERA']['CAMERA_INDEX'])
 CAMERA_CAPTURES_BASE_PATH = CONFIG['LOCATION']['CAMERA_CAPTURES_BASE_PATH']
 DETECTION_OUTPUT_BASE_PATH = CONFIG['LOCATION']['DETECTION_OUTPUT_BASE_PATH']
 
+MODEL_NAME = CONFIG['OBJECT_DETECTION']['MODEL_NAME']
 MODEL_PATH = CONFIG['OBJECT_DETECTION']['MODEL_PATH']
 
 SMTP_SERVER = CONFIG['MAIL']['SMTP_SERVER']
@@ -48,7 +49,7 @@ print('Camera initialized')
 
 print('Loading Yolov3 object detection model...')
 # Download this model from https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/yolo.h5
-OBJECT_DETECTOR = YoloObjectDetector(yolo_model_path=MODEL_PATH)
+OBJECT_DETECTOR = ObjectDetector(model_name=MODEL_NAME,model_path=MODEL_PATH)
 print('Yolov3 model loaded')
 
 print('Initializing Mailer...')
