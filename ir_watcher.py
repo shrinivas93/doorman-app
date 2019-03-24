@@ -76,7 +76,7 @@ def on_ir_state_changed(previous_state, current_state):
             with GRAPH.as_default():
                 detection_output_file_path = os.path.join(
                     DETECTION_OUTPUT_BASE_PATH, picture_file_name)
-                detections = OBJECT_DETECTOR.detect(
+                detections, detected_objects_location = OBJECT_DETECTOR.detect(
                     input_image_path=camera_capture_file_path,
                     output_image_path=detection_output_file_path,
                     extract_detected_objects=True,
