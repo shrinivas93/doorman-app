@@ -47,10 +47,10 @@ print('Initializing Camera...')
 CAMERA = Camera(camera_index=CAMERA_INDEX)
 print('Camera initialized')
 
-print('Loading Yolov3 object detection model...')
+print('Loading object detection model...')
 # Download this model from https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/yolo.h5
-OBJECT_DETECTOR = ObjectDetector(model_name=MODEL_NAME,model_path=MODEL_PATH)
-print('Yolov3 model loaded')
+OBJECT_DETECTOR = ObjectDetector(model_name=MODEL_NAME, model_path=MODEL_PATH)
+print('Model loaded')
 
 print('Initializing Mailer...')
 MAILER = Mailer(smtp_server=SMTP_SERVER, smtp_port=SMTP_PORT)
@@ -77,7 +77,7 @@ def on_ir_state_changed(previous_state, current_state):
             with GRAPH.as_default():
                 detection_output_file_path = os.path.join(
                     DETECTION_OUTPUT_BASE_PATH, picture_file_name)
-                detections, detected_objects_location = OBJECT_DETECTOR.detect(
+                detections, _ = OBJECT_DETECTOR.detect(
                     input_image_path=camera_capture_file_path,
                     output_image_path=detection_output_file_path,
                     extract_detected_objects=True,
@@ -87,7 +87,8 @@ def on_ir_state_changed(previous_state, current_state):
             print('Detection output stored at "{}"'.format(
                 detection_output_file_path))
 
-            interesting_objects = list(filter(lambda x: x['name'] == 'person', detections))
+            interesting_objects = list(
+                filter(lambda x: x['name'] == 'person', detections))
             interesting_objects_count = len(interesting_objects)
 
             if interesting_objects_count > 0:
